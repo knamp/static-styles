@@ -1,8 +1,8 @@
 import { JSDOM } from 'jsdom'
 
-import IDocument from './IDocument'
+import Context from './interfaces/Context'
 
-const convertToDom = (html: string): IDocument => {
+const convertToDom = (html: string): Context => {
   if (!html || html.length === 0) {
     throw new Error('HTML not set')
   }

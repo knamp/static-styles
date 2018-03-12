@@ -1,14 +1,16 @@
 import * as Css from 'css'
+
+import Context from './interfaces/Context'
+import Output from './interfaces/Output'
+
 import isPseudo from './isPseudo'
 import convertToDom from './convertToDom'
-import IDocument from './IDocument'
 import humanSize from './humanSize'
-import IOutput from './IOutput'
 
 export default class StaticStyles {
   private html: string
   private css: string
-  private context: IDocument
+  private context: Context
 
   constructor(html: string, css: string) {
     this.html = html
@@ -42,12 +44,12 @@ export default class StaticStyles {
     })
   }
 
-  get(): IOutput {
+  public get(): Output {
     const ast = Css.parse(this.css)
 
     ast.stylesheet.rules = this.filterStyles(ast.stylesheet.rules)
 
-    const compressedCss = Css.stringify(ast, {
+    const compressedCss: string = Css.stringify(ast, {
       compress: true,
     })
 
