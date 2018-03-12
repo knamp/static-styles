@@ -1,0 +1,23 @@
+{
+  "name": "static-styles",
+  "version": "0.0.0",
+  "description": "Get used styles from given HTML.",
+  "main": "dist/index.js",
+  "repository": "git@github.com:knamp/static-styles.git",
+  "author": "Hans Christian Reinl <info@drublic.de>",
+  "license": "MIT",
+  "dependencies": {
+    "css": "^2.2.1",
+    "jsdom": "^11.6.2",
+    "typescript": "^2.7.2"
+  },
+  "devDependencies": {
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.9.1"
+  },
+  "scripts": {
+    "ts:lint": "tslint **/*.ts",
+    "ts:build": "rm -rf dist/ && tsc",
+    "ts:watch": "yarn ts:build --watch"
+  }
+}
