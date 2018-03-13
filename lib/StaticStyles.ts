@@ -8,11 +8,14 @@ import convertToDom from './convertToDom'
 import humanSize from './humanSize'
 
 export default class StaticStyles {
+  private startTime: [number, number]
   private html: string
   private css: string
   private context: Context
 
   constructor(html: string, css: string) {
+    this.startTime = process.hrtime()
+
     this.html = html
     this.context = convertToDom(html)
     this.css = css
@@ -44,6 +47,15 @@ export default class StaticStyles {
     })
   }
 
+  private getTimeSpend(): [number, number] {
+    const currentTime: [number, number] = process.hrtime()
+
+    return [
+      currentTime[0] - this.startTime[0],
+      (currentTime[1] - this.startTime[1]) / 1000000 // get milli sec
+    ]
+  }
+
   public get(): Output {
     const ast = Css.parse(this.css)
 
@@ -55,6 +67,8 @@ export default class StaticStyles {
 
     return {
       stats: {
+        efficiency: 1 - (compressedCss.length / this.css.length),
+        timeSpent: this.getTimeSpend(),
         input: humanSize(this.css.length),
         output: humanSize(compressedCss.length),
       },
