@@ -14,10 +14,10 @@
     "typescript": "^2.7.2"
   },
   "devDependencies": {
-    "tsc": "^1.20150623.0",
     "tslint": "^5.9.1"
   },
   "scripts": {
+    "start": "yarn ts:watch",
     "ts:lint": "tslint **/*.ts",
     "ts:build": "rm -rf dist/ && tsc",
     "ts:watch": "yarn ts:build --watch"
