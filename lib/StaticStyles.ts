@@ -30,7 +30,13 @@ export default class StaticStyles {
           let matchingElementsArray: Node[] = [];
 
           if (pseudo) {
-            return true
+            const selectorSet = selector.split(':')
+
+            if (selectorSet[0] && selectorSet[0].length > 0) {
+              selector = selectorSet[0];
+            } else {
+              return true
+            }
           }
 
           try {
