@@ -47,8 +47,6 @@ export default class StaticStyles {
           return matchingElementsArray.length > 0
         })
 
-        console.log(rule.selectors, matches)
-
         if (matches.indexOf(true) === -1) {
           rule.declarations = []
         }
