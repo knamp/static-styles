@@ -9,16 +9,15 @@ import humanSize from './humanSize'
 
 export default class StaticStyles {
   private startTime: [number, number]
-  private html: string
-  private css: string
   private context: Context
 
-  constructor(html: string, css: string) {
+  constructor(
+    private html: string,
+    private css: string
+  ) {
     this.startTime = process.hrtime()
 
-    this.html = html
     this.context = convertToDom(html)
-    this.css = css
   }
 
   private filterStyles(rules: any[]): any[] {
@@ -27,20 +26,28 @@ export default class StaticStyles {
       if (rule.selectors) {
         const matches = rule.selectors.map((selector: string): boolean => {
           const pseudo = isPseudo(selector)
+          let matchingElements: NodeList;
+          let matchingElementsArray: Node[] = [];
 
           if (pseudo) {
             return true
           }
 
-          const matchingElements = this.context.document.querySelectorAll(selector)
-          const matchingElementsArray = Array.from(matchingElements)
+          try {
+            matchingElements = this.context.document.querySelectorAll(selector)
+            matchingElementsArray = Array.from(matchingElements)
+          } catch (error) {}
 
           return matchingElementsArray.length > 0
         })
 
+        console.log(rule.selectors, matches)
+
         if (matches.indexOf(true) === -1) {
           rule.declarations = []
         }
+      } else if (rule.rules) {
+        rule.rules = this.filterStyles(rule.rules);
       }
 
       return rule
