@@ -1,4 +1,6 @@
 export default `
+@charset "utf8";
+
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document

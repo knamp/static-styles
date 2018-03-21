@@ -1,4 +1,4 @@
 export default interface Output {
-  stats: object,
-  css: string,
+  stats: object;
+  css: string;
 }

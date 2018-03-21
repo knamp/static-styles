@@ -7,28 +7,28 @@
 export default (selector: string): boolean => {
   const ignoredPseudos: string[] = [
     /* link */
-    ':link', ':visited',
+    ":link", ":visited",
     /* user action */
-    ':hover', ':active', ':focus', ':focus-within',
+    ":hover", ":active", ":focus", ":focus-within",
     /* UI element states */
-    ':enabled', ':disabled', ':checked', ':indeterminate',
+    ":enabled", ":disabled", ":checked", ":indeterminate",
     /* form validation */
-    ':required', ':invalid', ':valid',
+    ":required", ":invalid", ":valid",
     /* pseudo elements */
-    '::first-line', '::first-letter', '::selection', '::before', '::after',
+    "::first-line", "::first-letter", "::selection", "::before", "::after",
     /* pseudo classes */
-    ':target',
+    ":target",
     /* CSS2 pseudo elements */
-    ':before', ':after',
+    ":before", ":after",
     /* Vendor-specific pseudo-elements:
      * https://developer.mozilla.org/ja/docs/Glossary/Vendor_Prefix
      */
-    '::?-(?:moz|ms|webkit|o)-[a-z0-9-]+'
+    "::?-(?:moz|ms|webkit|o)-[a-z0-9-]+",
   ];
 
   // Actual regex is of the format: /^(:hover|:focus|...)$/i
-  const pseudosRegex: RegExp = new RegExp('(' + ignoredPseudos.join('|') + ')', 'i');
-  const matches: RegExpMatchArray | null = selector.match(pseudosRegex)
+  const pseudosRegex: RegExp = new RegExp("(" + ignoredPseudos.join("|") + ")", "i");
+  const matches: RegExpMatchArray | null = selector.match(pseudosRegex);
 
-  return !!(matches && matches.length > 0)
-}
+  return !!(matches && matches.length > 0);
+};
