@@ -8,10 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
-    "@types/node": "^9.4.7",
+    "@types/node": "^11.9.4",
     "css": "^2.2.1",
-    "jsdom": "^11.6.2",
-    "typescript": "^2.7.2"
+    "jsdom": "^13.2.0",
+    "typescript": "^3.3.3"
   },
   "devDependencies": {
     "tslint": "^5.9.1"
